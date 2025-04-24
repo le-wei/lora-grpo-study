@@ -184,11 +184,14 @@ def check_answer(prompts, completions, answer, **kwargs):
         if guess == true_answer:
             score += 3.0
         # Match if spaces are seen
+        # 如果看到空格则匹配
         elif guess.strip() == true_answer.strip():
             score += 1.5
         else:
             # We also reward it if the answer is close via ratios!
             # Ie if the answer is within some range, reward it!
+            # 如果答案通过比例接近，我们也会给予奖励！
+            # 也就是说，如果答案在某个范围内，就给予奖励！
             try:
                 ratio = float(guess) / float(true_answer)
                 if   ratio >= 0.9 and ratio <= 1.1: score += 0.5
